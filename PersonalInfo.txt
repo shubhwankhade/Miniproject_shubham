@@ -1,0 +1,83 @@
+package Project;
+import java.util.Scanner;
+abstract class PersonalInfomation{
+	
+	String name;
+	String contNo;
+	String address;
+	
+	PersonalInfomation()
+	{
+		this.name=name;
+		this.contNo=contNo;
+		this.address=address;
+	}
+	
+	PersonalInfomation(String name, String contNo, String address)
+	{
+		this.name=name;
+		this.contNo=contNo;
+		this.address=address;
+	}
+	
+	
+	abstract void displayPersonalDetails();
+}
+
+class Owner extends PersonalInfomation
+{
+	
+	Owner( )
+	{
+		super.name="Shubham Wankhade";
+		super.contNo="123456789";
+		super.contNo="Thane";
+	}
+
+	public void displayPersonalDetails() 
+	{
+		System.out.println("Owner Name : "+name);
+		System.out.println("Contact Number : "+contNo);
+		System.out.println("Current Address : "+address);
+		
+	}
+}
+
+
+class Tenant extends PersonalInfomation
+{
+
+	
+	
+	Tenant(String name, String contNo, String address )
+	{
+		super(name,contNo, address);
+	}
+
+	
+	public void displayPersonalDetails() 
+	{
+		System.out.println("Tenant Name : "+name);
+		System.out.println("Contact Number : "+contNo);
+		System.out.println("Current Address : "+address);
+		
+	}
+}
+
+class PersonalInfo
+{
+	public static void main(String arg[]) {
+		Scanner sc =new Scanner(System.in);
+		
+		System.out.println("Enter your information");
+		String s = sc.nextLine();
+		String s1 = sc.nextLine();
+		String s2 = sc.nextLine();
+		Tenant t = new Tenant(s,s1,s2);
+		t.displayPersonalDetails(); 
+	
+	}
+
+	}
+
+

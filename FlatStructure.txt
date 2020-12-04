@@ -1,0 +1,96 @@
+package Project;
+
+
+abstract class FlatInfo
+{
+	int totalArea;
+	int floor;
+	double price;
+	
+	FlatInfo()
+	{
+		this.totalArea=totalArea;
+		this.floor=floor;
+		this.price=price;
+	}
+	
+	FlatInfo(int totalArea, int floor, double price)
+	{
+		this.totalArea=totalArea;
+		this.floor=floor;
+		this.price=price;
+	}
+	
+	abstract void displayFlatDetails();
+}
+
+class oneBHK extends FlatInfo
+{
+
+	oneBHK()
+	{
+		super.totalArea=1000;
+		super.floor=5;
+		super.price=15000;
+	}
+	
+	void displayFlatDetails()
+	{
+		
+        System.out.println("===================================================================");
+		System.out.println("Total Area " + totalArea+ " sq.feet. At " + floor +"th floor");
+		System.out.println("Your Rent is " + price+" Rs. only.");
+        System.out.println("====================================================================");
+		
+
+	}
+}
+
+class twoBHK extends FlatInfo
+{
+	
+	twoBHK()
+	{
+		super.totalArea=1500;
+		super.floor=2;
+		super.price=20000;
+	}
+	
+	void displayFlatDetails()
+	{
+   
+		System.out.println("Total Area " + totalArea+ " sq.feet. At " + floor +"th floor");
+		System.out.println("Your Rent is " + price+" Rs. only.");
+
+	}
+}
+
+class threeBHK extends FlatInfo
+{
+	
+	threeBHK()
+	{
+		super.totalArea=1800;
+		super.floor=3;
+		super.price=35000;
+	}
+	
+	void displayFlatDetails()
+	{
+        System.out.println("===================================================================");
+		System.out.println("Total Area " + totalArea+ " sq.feet. At " + floor +"th floor");
+		System.out.println("Your Rent is " + price+" Rs. only.");
+        System.out.println("====================================================================");
+	}
+}
+
+
+class FlatStructure
+{
+	public static void main(String arg[]) {
+		
+		twoBHK tb = new twoBHK();
+		tb.displayFlatDetails();
+		
+	}
+}

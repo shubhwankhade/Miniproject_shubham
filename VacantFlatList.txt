@@ -1,0 +1,247 @@
+package Project;
+import java.util.Scanner;
+class Node
+{
+	
+	String name;
+	String contNo;
+	String address;
+	String flatType;
+	double rent;
+	Node next;
+	
+	Node()
+	{
+		
+	}
+	Node(String name, String contNo, String address, String flatType, double rent)
+	{
+		this.name=name;
+		this.contNo=contNo;
+		this.address=address;
+		this.flatType=flatType;
+		this.rent=rent;
+	}
+
+
+	
+}
+class VacantFL
+{
+	
+	Node head;
+	Node tail;
+	int noVacantFlats;
+	
+	public Node addNode(String name, String contNo, String address,String flatType, double rent)
+		{
+			Node newNode = new Node(name,contNo,address,flatType,rent);
+			if(head==null)
+			{
+				head=newNode;
+				tail=newNode;
+			}
+			else
+			{
+				tail.next=newNode;
+				tail=newNode;
+			}
+			
+			noVacantFlats++;
+			return newNode;
+		}
+	
+	public Node searchNode(String contNo)
+	{
+		
+		Node prev1 = new Node();
+		Node prev = null;
+		Node curr=head;
+		int i=0;
+		
+		while(curr!=null && curr.contNo != contNo)
+		{
+			prev=curr;
+			curr=curr.next;
+		}
+		
+		return curr;
+	}
+	
+	
+	public boolean nodedel(String contNo)
+	{
+		
+		
+		
+		Node prev = null;
+		Node curr=head;
+		int i=0;
+		
+		
+		
+		while(curr!=null && (curr.contNo != contNo))
+		{
+			prev=curr;
+			curr=curr.next;
+		}
+		
+		if(curr==null)
+		{
+			System.out.println("Sorry! You enter wrong choice");
+			return false;
+		}
+		
+		prev.next=curr.next;
+		curr=null;
+		noVacantFlats--;
+		return true;
+	}
+	
+	void printvacantflatlist()
+	{
+		Node curr=head;
+		while(curr!=null)
+		{
+			
+			System.out.printf("%-20s %-18s %-16s %-15s %s \n", curr.name, curr.contNo,curr.address,curr.flatType,curr.rent);
+
+			
+			System.out.println();
+			curr=curr.next;
+		
+
+		}
+	}	
+}
+
+class VacantFlatList{
+
+	
+	public static void main(String arg[]) {
+		String contNo; 
+		VacantFL a1 = new VacantFL();
+		Scanner sc = new Scanner(System.in);
+		int choice;
+		
+		do
+		{
+			System.out.println("********Select Your Choice************");
+			
+			System.out.println("Enter 1 - Add Flat details");
+			System.out.println("Enter 2 - select flat details");
+			System.out.println("Enter 3 - search for flats");
+			System.out.println("Enter 4 - avaliable flats");
+			System.out.println("Enter 5 - for exit");
+			System.out.println("*************************************");
+			
+			choice = sc.nextInt();
+			
+			switch (choice) 
+			{
+			
+			case 1:
+				
+					
+					VacantFL a = new VacantFL();
+					
+				
+					
+					System.out.print("Enter Your Name ");
+					sc.nextLine();
+					String name = sc.nextLine();
+					
+					System.out.print("contact no ");
+					String contNo1 = sc.nextLine();
+					
+					System.out.print("Address (flat is located) ");
+					String address = sc.nextLine();
+					
+					System.out.print("Flat Type ");
+					String flatType = sc.nextLine();
+					
+					System.out.print("rent ");
+					double rent = sc.nextInt();
+					
+					a1.addNode(name, contNo1, address, flatType,rent);
+					
+					
+			
+						break;
+				
+			case 2:
+				        System.out.println("Enter contact no.");
+				        
+						contNo = sc.nextLine();
+						sc.nextLine();
+						
+						//a.nodedel(contNo);
+						//a.nodedel("123456782");
+						
+						if(a1.nodedel("123456782")==false)
+						{
+							break;
+						}
+						//System.out.println("                ****Your Details****");
+				       // System.out.println("===================================================================");
+				        System.out.println("Enter Your Name");
+				        sc.nextLine();
+						String s = sc.nextLine();
+						
+						System.out.println("Enter Your Contact no");
+						String s1 = sc.nextLine();
+						
+						System.out.println("Enter Your Address");
+						String s2 = sc.nextLine();		 
+						Tenant t = new Tenant(s,s1,s2);
+						 System.out.println("====================================================================");
+						t.displayPersonalDetails();
+						twoBHK tb = new twoBHK();
+						tb.displayFlatDetails();
+				        System.out.println("====================================================================");		      
+						
+							break;
+				
+			case 3:
+						//System.out.println("Enter the flat Type ");
+						//String s1 = sc.nextLine();
+				
+				
+				
+						Node n = a1.searchNode("123456782");
+				        System.out.println("==========================================================================================");
+						System.out.println("Name\t\t     Contact No.\tAddress \t Flat Type \t Rent ");
+				        System.out.println("==========================================================================================");
+				        System.out.printf("%-20s %-18s %-16s %-15s %s \n", n.name, n.contNo,n.address,n.flatType,n.rent);
+						System.out.println("==========================================================================================");
+						System.out.println("Additional Information");
+						twoBHK tb1 = new twoBHK();
+						tb1.displayFlatDetails();
+						System.out.println("==========================================================================================");
+							break;
+						
+						
+				
+			case 4:	
+				 System.out.println("                                   *Avalible Flats*");
+		        System.out.println("==========================================================================================");
+				System.out.println("Name\t\t     Contact No.\tAddress \t Flat Type \t Rent ");
+		        System.out.println("==========================================================================================");
+				a1.printvacantflatlist();
+				System.out.println("==========================================================================================");
+						break;
+						
+			case 5:	
+				
+						break;
+			
+			}
+		}while(choice != 5);
+			
+		
+	}
+		
+		
+		
+		
+	}
